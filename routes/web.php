@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*Route::group(['prefix' => 'backend'], function () {
+    Route::get('/','Backend\BackendController@index');
+});*/
+
+
+
+Route::resource('backend','Backend\BackendController');
+//Route::resource('equipo','EquipoController');

@@ -1,8 +1,54 @@
 
-@extends('layouts.backend_layout')
-  @section('content')
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  <h1 class="page-header">Dashboard</h1>
+  <h1 class="page-header">{!! $content['title'] !!}</h1>
+    <h2 class="sub-header">Ultimos equipos agregados</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Pais</th>
+            <th>Creado</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($content['last_equipos_added'] as $equipo)
+            <tr>
+              <td>{!!  $equipo->id !!}</td>
+              <td><a href="{!! url('/backend/equipo/'.$equipo->id)!!}">{!!  $equipo->nombre !!}</a></td>
+              <td>{!!  $equipo->pais !!}</td>
+              <td>{!!  $equipo->created !!}</td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Equipo Local</th>
+              <th>Equipos Visitante</th>
+              <th>Hora inicio</th>
+              <th>Hora fin</th>
+              <th>Estadio</th>
+              <th>Pais</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($content['last_partidos_added'] as $equipo)
+              <tr>
+                <td><a href="{!! url('/backend/equipo/'.$partido->id)!!}">{!!  $equipo->id !!}</a></td>
+                <>
+                <td>{!!  $equipo->pais !!}</td>
+                <td>{!!  $equipo->created !!}</td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+
 <!--
   <div class="row placeholders">
     <div class="col-xs-6 col-sm-3 placeholder">
@@ -159,4 +205,3 @@
 </div>
 -->
 </div>
-@stop

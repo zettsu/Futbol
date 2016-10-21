@@ -1,14 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Equipo extends Model{
-  $table = 'equipos';
-  //$timestamps = false;
-  //  $dates = ['deleted'];
-
-
+  
+  public $table = 'equipos';
+  public $timestamps = false;
 
 }

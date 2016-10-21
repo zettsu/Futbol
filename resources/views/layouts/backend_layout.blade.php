@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <div class="row">
         @include('layouts.backend.sidebar')
-        @yield('content')
+        @include('layouts.backend.content')
       </div>
     </div>
     @include('layouts.backend.footer')

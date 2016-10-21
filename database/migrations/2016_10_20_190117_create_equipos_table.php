@@ -14,12 +14,12 @@ class CreateEquiposTable extends Migration
     public function up()
     {
         Schema::create('equipos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nombre')->unique();
-            $table->string('pais')->nulleable();
-            $table->timestamp('created')->useCurrent();
-            $table->timestamp('modified')->nullable();
-            $table->timestamp('deleted')->nullable();
+            $table->increments('equipo_id');
+            $table->string('equipo_nombre')->unique();
+            $table->integer('equipo_pais_id')->nulleable();
+            $table->timestamp('equipo_created')->useCurrent();
+            $table->timestamp('equipo_modified')->nullable();
+            $table->timestamp('equipo_deleted')->nullable();
         });
     }
 

@@ -14,15 +14,15 @@ class CreatePartidosTable extends Migration
     public function up()
     {
         Schema::create('partidos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('id_equipo_local')->nulleable();
-            $table->integer('id_equipo_visitante')->nulleable();
-            $table->string('id_estadio')->nulleable();
-            $table->dateTime('fin')->nulleable();
-            $table->dateTime('inicio')->nulleable();
-            $table->timestamp('created')->useCurrent();
-            $table->timestamp('modified')->nullable();
-            $table->timestamp('deleted')->nullable();
+            $table->increments('partido_id');
+            $table->integer('partido_equipo_id_local')->nulleable();
+            $table->integer('partido_equipo_id_visitante')->nulleable();
+            $table->integer('partido_estadio_id')->nulleable();
+            $table->dateTime('partido_inicio')->nulleable();
+            $table->dateTime('partido_fin')->nulleable();
+            $table->timestamp('partido_created')->useCurrent();
+            $table->timestamp('partido_modified')->nullable();
+            $table->timestamp('partido_deleted')->nullable();
         });
     }
 

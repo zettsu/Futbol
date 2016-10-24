@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Futbol\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use Futbol\Http\Controllers\Controller;
 
-class Controller extends Controller
+class PartidoController extends Controller
 {
     public function index(){}
     public function store(){}

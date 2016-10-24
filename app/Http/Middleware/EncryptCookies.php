@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Futbol\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 

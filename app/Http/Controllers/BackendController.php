@@ -1,27 +1,37 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Futbol\Http\Controllers;
 
-use App\Models\Equipo;
-use App\Models\Partido;
-use App\Http\Controllers\Controller;
+use Futbol\Models\Equipo;
+use Futbol\Models\Partido;
+use Futbol\Models\Estadio;
+use Futbol\Models\Jugador;
+use Futbol\Models\Pais;
+use Futbol\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 
 
-class BackendController extends Controller
-{
-  public function index(){
+class BackendController extends Controller{
 
-    $equipos = Equipo::all()->sortByDesc('created');
-    //$partidos = Partido::all()->sortByDesc('created');
-    //$partido = new Partido();
-    dd($partido = Partido::with('visitante','local','estadio')->get());
-    die();
+  public function dash(){
+    return view('layouts.backend_layout');
+  }
+
+  public function last_activity(){
+    $equipos = Equipo::with('pais_info')->get();
+    $partidos = Partido::with('visitante','local','estadio')->get();
+
+    foreach ($partidos as $partido) {
+      $partido->estadio->pais = Pais::where('pais_id',$partido->estadio->estadio_pais_id)->first();
+    }
+
     $content['content'] = array(
       'title' => 'Dash',
-      'last_equipos_added' => $equipos//,
-      //'last_partidos_added'=> $partidos
+      'last_equipos_added' => $equipos,
+      'last_partidos_added'=> $partidos
     );
 
-    return view('layouts.backend_layout',$content);
+    return view('layouts.backend.content',$content);
   }
+
 }

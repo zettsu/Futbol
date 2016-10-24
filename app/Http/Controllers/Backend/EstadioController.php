@@ -4,6 +4,7 @@ namespace Futbol\Http\Controllers\Backend;
 
 use Futbol\Http\Controllers\Controller;
 
-class JugadorController extends Controller{
-
+class EstadioController extends Controller
+{
+    //
 }

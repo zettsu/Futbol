@@ -10,8 +10,11 @@
 
 	    <title>Futbol Pelussa</title>s
 	    <!-- Bootstrap core CSS -->
-	    <link href="../css/bootstrap.css" rel="stylesheet">
+	    <link href="../css/app.css" rel="stylesheet">
+			<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
 	    <!-- Custom styles for this template -->
 	    <link href="../css/dashboard.css" rel="stylesheet">
+			<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 			@yield('css')
 	  </head>

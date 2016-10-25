@@ -12,11 +12,12 @@
 */
 
 Route::group(['prefix' => 'backend'], function () {
-    Route::get('/dash','BackendController@dash');
+    Route::get('/','BackendController@dash');
     Route::get('/last_activity','BackendController@last_activity');
+
+    Route::group(['prefix'=>'equipo'],function(){
+      Route::get('/add','Backend\EquipoController@add');
+      Route::post('/create','Backend\EquipoController@create');
+    });
+
 });
-
-
-
-//Route::resource('backend','BackendController');
-//Route::resource('equipo','EquipoController');

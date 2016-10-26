@@ -11,6 +11,30 @@
 $white_background : #f5f5f5;
 $blue_backgound : #428bca;
 
+//-webkit-filter:/* Chrome y Safari */
+//-moz-filter:/* Mozilla */
+//-ms-filter:/* Internet Explorer */
+//-o-filter:/* Opera */
+
+.invertir{
+  -webkit-filter: invert(0.5);
+  -moz-filter: invert(0.5);
+  -ms-filter: invert(0.5);
+  -o-filter: invert(0.5);
+}
+
+.container_actions{
+  &.element{
+    z-index: 2;
+  }
+  .action{
+    position: relative;
+    z-index: 5 !important;
+    right: 10%;
+    top:-40;
+  }
+}
+
 .sidebar {
   background-color : $blue_backgound !important;
 }

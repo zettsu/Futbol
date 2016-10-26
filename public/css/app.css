@@ -5766,6 +5766,21 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+.invertir {
+  -webkit-filter: invert(0.5);
+  -moz-filter: invert(0.5);
+  -ms-filter: invert(0.5);
+  -o-filter: invert(0.5); }
+
+.container_actions.element {
+  z-index: 2; }
+
+.container_actions .action {
+  position: relative;
+  z-index: 5 !important;
+  right: 10%;
+  top: -40; }
+
 .sidebar {
   background-color: #428bca !important; }
 

@@ -16,7 +16,7 @@ use Validator;
 class EquipoController extends Controller
 {
   public function index(){}
-  public function store(Equipo $equipo = null, Request $request){
+  public function store(Request $request){
     $code = 200;
     $msg = 'OK';
     $status = ['status' => $msg, 'code' => $code];
@@ -29,12 +29,12 @@ class EquipoController extends Controller
 
     $validator = Validator::make($request->all(), $rules);
 
-    if ($validator->fails()) {
+    if($validator->fails()) {
       $content['message'] = 'Error al agregar el Equipo.';
       $content['status'] = 13;
     }else{
       $inputs = $request->all();
-  	  Equipo::create($inputs);
+  	  Equipo::save($inputs);
     }
 
     return $this->makeResponse($content, $status);
@@ -52,15 +52,30 @@ class EquipoController extends Controller
 
   public function edit($id){
     $equipo = Equipo::find($id);
+
     $items = Pais::pluck('pais_nombre', 'pais_id');
     return view('layouts.backend.equipo.edit')->with(['equipo' => $equipo, 'lista_paises' => $items]);
   }
 
-  public function update(){}
+  public function actions(){
+    return view('layouts.backend.equipo.actions');
+  }
+
+  public function update($id, Request $request){
+    $equipo = Equipo::find($id);
+
+    $nuevo_equipo_nombre = $request->input('equipo_nombre');
+    $nuevo_equipo_pais_id = $request->input('equipo_pais_id');
+
+    $equipo->equipo_nombre = $nuevo_equipo_nombre;
+    $equipo->equipo_pais_id = $nuevo_equipo_pais_id;
+
+    $equipo->save();
+  }
 
   public function setHeader(){}
 
-  public function makeResponse($content,$status){
+  public function makeResponse($content, $status){
     $header = array ('Content-Type' => 'application/json; charset=UTF-8','charset' => 'utf-8');
 
     $response =

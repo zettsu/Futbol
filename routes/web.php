@@ -19,7 +19,9 @@ Route::group(['prefix' => 'backend'], function () {
       Route::post('/store','Backend\EquipoController@store');
       Route::get('/create','Backend\EquipoController@create');
       Route::get('/edit/{id}','Backend\EquipoController@edit');
-      Route::get('/update/{id}','Backend\EquipoController@update');
+      Route::put('/update/{id}','Backend\EquipoController@update');
+      Route::patch('/update/{id}','Backend\EquipoController@update');
+      Route::get('/actions','Backend\EquipoController@actions');
     });
 
     Route::group(['prefix'=>'partido'],function(){

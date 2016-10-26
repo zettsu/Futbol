@@ -57,3 +57,31 @@ function setMessageError(data){
 function removeMessages(){
   $('#alerts_container').empty();
 }
+
+function equipoActions(){
+  $.ajax({
+    url: '/backend/equipo/actions',
+    type: 'get',
+    dataType: 'html'
+  })
+  .done(function(data) {
+    $('#content' ).html( data);
+  })
+  .fail(function() {
+    $('#content').html(data);
+  });
+}
+
+function equipoEditar(){
+  $.ajax({
+    url: '/backend/equipo/list',
+    type: 'get',
+    dataType: 'html'
+  })
+  .done(function(data) {
+    $('#content' ).html( data);
+  })
+  .fail(function() {
+    $('#content').html(data);
+  });
+}

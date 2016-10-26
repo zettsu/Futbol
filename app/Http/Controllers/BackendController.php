@@ -18,8 +18,8 @@ class BackendController extends Controller{
   }
 
   public function last_activity(){
-    $equipos = Equipo::with('pais_info')->get()->sortByDesc('equipo_created');
-    $partidos = Partido::with('visitante','local','estadio')->get();
+    $equipos = Equipo::with('pais_info')->get()->sortByDesc('equipo_created')->take(10);
+    $partidos = Partido::with('visitante','local','estadio')->get()->sortByDesc('partido_created')->take(10);
 
     foreach ($partidos as $partido) {
       $partido->estadio->pais = Pais::where('pais_id',$partido->estadio->estadio_pais_id)->first();

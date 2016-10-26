@@ -1,6 +1,6 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 <h1>Nuevo Equipo</h1>
-{!! Form::open(array('url' => 'backend/equipo/create')) !!}
+{!! Form::open(array('url' => 'backend/equipo/store', 'method' => 'post')) !!}
   <div class="form-group">
     <div class="row basic-form">
       <div class="col-sm-6 col-sm-offset-0 col-md-1 col-md-offset-0">
@@ -20,18 +20,11 @@
     </div>
     <div class="row basic-form">
       <div class="col-sm-6 col-sm-offset-0 col-md-1 col-md-offset-1">
-        {!! Form::submit('Enviar',['class'=>'btn btn-success']); !!}
+        {!! Form::submit('Enviar',['class'=>'btn btn-success', 'id'=>'addEquipo']); !!}
       </div>
     </div>
 
   </div>
 {!! Form::close() !!}
-<!--
-<div class="row">
-  <div class="col-sm-9 col-sm-offset-3 col-md-6 col-md-offset-0">
-  <div class="alert alert-success" role="alert"> <strong>Well done!</strong> You successfully read this important alert message. </div>
-  <div class="alert alert-warning" role="alert"> <strong>Warning!</strong> Better check yourself, you're not looking too good. </div>
-  <div class="alert alert-danger" role="alert"> <strong>Oh snap!</strong> Change a few things up and try submitting again. </div>
-</div>
-</div>
--->
+
+@include('layouts.ajax.form_manage_add_equipo')

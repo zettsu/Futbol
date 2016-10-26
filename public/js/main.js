@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 function equipoAdd(){
   $.ajax({
-    url: '/backend/equipo/add',
+    url: '/backend/equipo/create',
     type: 'get',
     dataType: 'html'
   })
@@ -14,12 +14,11 @@ function equipoAdd(){
     $('#content' ).html( data);
   })
   .fail(function() {
-    console.log("error");
-  })
-  .always(function() {
-    console.log("complete");
+    $('#content').html(data);
   });
 }
+
+
 
 $(".nav li").on("click", function() {
     $(".nav li").removeClass("active");
@@ -37,9 +36,24 @@ function last_activity(){
     $('#content' ).html( data);
   })
   .fail(function() {
-    console.log("error");
-  })
-  .always(function() {
-    console.log("complete");
+    $('#content').html(data);
   });
+}
+
+function setMessage(data){
+    removeMessages();
+    if(data.status == 0){
+      $('#alerts_container').html("<div class='alert alert-success' role='alert' > <strong>Exito! </strong>"+data.message+ "</div>");
+    }else{
+      setMessageError(data);
+    }
+}
+
+function setMessageError(data){
+    removeMessages();
+    $('#alerts_container').html("<div class='alert alert-danger' role='alert' > <strong>Error! </strong>"+data.message+ "</div>");
+}
+
+function removeMessages(){
+  $('#alerts_container').empty();
 }

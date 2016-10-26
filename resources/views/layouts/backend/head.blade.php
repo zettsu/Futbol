@@ -8,7 +8,7 @@
 	    <meta name="author" content="">
 	    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-	    <title>Futbol Pelussa</title>s
+	    <title>Futbol Pelussa</title>
 	    <!-- Bootstrap core CSS -->
 	    <link href="../css/app.css" rel="stylesheet">
 			<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">

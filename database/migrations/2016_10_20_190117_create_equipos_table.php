@@ -17,10 +17,14 @@ class CreateEquiposTable extends Migration
             $table->increments('equipo_id');
             $table->string('equipo_nombre')->unique();
             $table->integer('equipo_pais_id')->nulleable();
+            $table->json('equipo_images')->nullable();
+            $table->json('equipo_info')->nullable();
             $table->timestamp('equipo_created')->useCurrent();
             $table->timestamp('equipo_modified')->nullable();
             $table->timestamp('equipo_deleted')->nullable();
+
         });
+
     }
 
     /**

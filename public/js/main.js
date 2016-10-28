@@ -1,12 +1,27 @@
 $(document).ready(function(){
-  last_activity();
-  $("#home").addClass("active");
+  //last_activity();
+  //$("#home").addClass("active");
+  partidoVer(1);
 });
 
 
 function equipoAdd(){
   $.ajax({
     url: '/backend/equipo/create',
+    type: 'get',
+    dataType: 'html'
+  })
+  .done(function(data) {
+    $('#content' ).html( data);
+  })
+  .fail(function() {
+    $('#content').html(data);
+  });
+}
+
+function partidoAdd(){
+  $.ajax({
+    url: '/backend/partido/create',
     type: 'get',
     dataType: 'html'
   })
@@ -72,9 +87,37 @@ function equipoActions(){
   });
 }
 
+function partidoActions(){
+  $.ajax({
+    url: '/backend/partido/actions',
+    type: 'get',
+    dataType: 'html'
+  })
+  .done(function(data) {
+    $('#content' ).html( data);
+  })
+  .fail(function() {
+    $('#content').html(data);
+  });
+}
+
 function equipoEditar(){
   $.ajax({
     url: '/backend/equipo/list',
+    type: 'get',
+    dataType: 'html'
+  })
+  .done(function(data) {
+    $('#content' ).html( data);
+  })
+  .fail(function() {
+    $('#content').html(data);
+  });
+}
+
+function partidoVer(id){
+  $.ajax({
+    url: '/backend/partido/show/'+id,
     type: 'get',
     dataType: 'html'
   })

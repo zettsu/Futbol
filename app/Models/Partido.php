@@ -8,6 +8,8 @@ class Partido extends Model{
 
   public $table = 'partidos';
   public $timestamps = false;
+  protected $primaryKey = 'partido_id';
+  protected $fillable = ['partido_estadio_id','partido_equipo_id_visitante','partido_equipo_id_local','partido_inicio','partido_fin'];
 
 
   public function visitante(){

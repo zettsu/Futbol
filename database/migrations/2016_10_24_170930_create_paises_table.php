@@ -16,10 +16,9 @@ class CreatePaisesTable extends Migration
         Schema::create('paises', function (Blueprint $table) {
             $table->increments('pais_id');
             $table->string('pais_nombre');
+            $table->json('pais_images')->nullable();
             $table->json('pais_historico')->nullable();
-            $table->string('pais_latitud')->nullable();
-            $table->string('pais_longitud')->nullable();
-            $table->string('pais_zona_horaria')->nullable();
+            $table->json('pais_info')->nullable();
             $table->timestamp('pais_created')->useCurrent();
             $table->timestamp('pais_modified')->nullable();
             $table->timestamp('pais_deleted')->nullable();

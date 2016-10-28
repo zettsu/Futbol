@@ -17,11 +17,9 @@ class CreateJugadoresTable extends Migration
             $table->increments('jugador_id');
             $table->json('jugador_nombres')->nulleable();
             $table->json('jugador_apellidos')->nulleable();
-            $table->integer('jugador_id_posicion')->nulleable();
             $table->integer('jugador_id_equipo_actual')->nulleable();
             $table->json('jugador_historial_equipos')->nulleable();
-            $table->dateTime('jugador_fecha_nacimiento')->nulleable();
-            $table->string('jugador_hash');
+            $table->json('info_jugador')->nulleable();
             $table->timestamp('jugador_created')->useCurrent();
             $table->timestamp('jugador_modified')->nullable();
             $table->timestamp('jugador_deleted')->nullable();

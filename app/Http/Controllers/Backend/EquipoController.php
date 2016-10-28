@@ -16,6 +16,14 @@ use Validator;
 class EquipoController extends Controller
 {
   public function index(){}
+
+  public function messages(){
+    return [
+      'equipo_pais_id' => 'Debe seleccionar el pais al que pertenece el equipo.',
+      'equipo_nombre'  => 'El equipo debe tener un nombre.',
+    ];
+  }
+
   public function store(Request $request){
     $code = 200;
     $msg = 'OK';
@@ -30,11 +38,15 @@ class EquipoController extends Controller
     $validator = Validator::make($request->all(), $rules);
 
     if($validator->fails()) {
-      $content['message'] = 'Error al agregar el Equipo.';
+      $errors = $validator->errors();
+
+      $content['message'] = ['errors'=> $errors];
       $content['status'] = 13;
     }else{
-      $inputs = $request->all();
-  	  Equipo::save($inputs);
+  	  $equipo = new Equipo();
+      $equipo->equipo_pais_id = $request->input('equipo_pais_id');
+      $equipo->equipo_nombre = $request->input('equipo_nombre');
+      $equipo->save();
     }
 
     return $this->makeResponse($content, $status);
@@ -72,8 +84,6 @@ class EquipoController extends Controller
 
     $equipo->save();
   }
-
-  public function setHeader(){}
 
   public function makeResponse($content, $status){
     $header = array ('Content-Type' => 'application/json; charset=UTF-8','charset' => 'utf-8');

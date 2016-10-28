@@ -20,9 +20,13 @@ class CreatePartidosTable extends Migration
             $table->integer('partido_estadio_id')->nulleable();
             $table->dateTime('partido_inicio')->nulleable();
             $table->dateTime('partido_fin')->nulleable();
+            $table->json('partido_images')->nullable();
+            $table->json('partido_info')->nullable();
             $table->timestamp('partido_created')->useCurrent();
             $table->timestamp('partido_modified')->nullable();
             $table->timestamp('partido_deleted')->nullable();
+
+
         });
     }
 

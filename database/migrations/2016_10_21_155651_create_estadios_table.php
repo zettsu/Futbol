@@ -17,7 +17,8 @@ class CreateEstadiosTable extends Migration
             $table->increments('estadio_id');
             $table->string('estadio_nombre')->nullable();
             $table->json('estadio_historico_partidos')->nullable();
-            $table->dateTime('estadio_construido')->nullable();
+            $table->json('estadio_images')->nullable();
+            $table->json('estadio_info')->nullable();
             $table->integer('estadio_pais_id')->nullable();
             $table->timestamp('estadio_created')->useCurrent();
             $table->timestamp('estadio_modified')->nullable();

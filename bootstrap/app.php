@@ -10,6 +10,10 @@
 | the IoC container for the system binding all of the various parts.
 |
 */
+//Custom logs
+/*use Monolog\Logger;
+use Monolog\Handler\StreamHandler;*/
+//
 
 $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
@@ -51,5 +55,17 @@ $app->singleton(
 | from the actual running of the application and sending responses.
 |
 */
+
+//Custom Logs
+/*$app->configureMonologUsing(function($monolog) {
+    $monolog->pushHandler(new StreamHandler('/var/log/futbol/futbol-info.log', Logger::INFO));
+    $monolog->pushHandler(new StreamHandler('/var/log/futbol/futbol-warnings.log', Logger::WARNING));
+    $monolog->pushHandler(new StreamHandler('/var/log/futbol/futbol-error.log', Logger::ERROR));
+});*/
+
+//
+
+
+
 
 return $app;

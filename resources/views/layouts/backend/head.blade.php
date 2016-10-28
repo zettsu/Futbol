@@ -15,6 +15,7 @@
 	    <!-- Custom styles for this template -->
 	    <link href="../css/dashboard.css" rel="stylesheet">
 			<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/jquery.datetimepicker.css">
 
 			@yield('css')
 	  </head>

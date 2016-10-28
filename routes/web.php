@@ -16,6 +16,7 @@ Route::group(['prefix' => 'backend'], function () {
     Route::get('/last_activity','BackendController@last_activity');
 
     Route::group(['prefix'=>'equipo'],function(){
+      Route::get('/show/{id}','Backend\EquipoController@show');
       Route::post('/store','Backend\EquipoController@store');
       Route::get('/create','Backend\EquipoController@create');
       Route::get('/edit/{id}','Backend\EquipoController@edit');
@@ -25,8 +26,13 @@ Route::group(['prefix' => 'backend'], function () {
     });
 
     Route::group(['prefix'=>'partido'],function(){
-      Route::get('/add','Backend\PartidoController@add');
-      Route::put('/create','Backend\PartidoController@create');
+      Route::get('/show/{id}','Backend\PartidoController@show');
+      Route::post('/store','Backend\PartidoController@store');
+      Route::get('/create','Backend\PartidoController@create');
+      Route::get('/edit/{id}','Backend\PartidoController@edit');
+      Route::put('/update/{id}','Backend\PartidoController@update');
+      Route::patch('/update/{id}','Backend\PartidoController@update');
+      Route::get('/actions','Backend\PartidoController@actions');
     });
 
     Route::group(['prefix'=>'pais'],function(){

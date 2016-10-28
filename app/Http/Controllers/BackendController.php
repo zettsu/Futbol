@@ -9,6 +9,7 @@ use Futbol\Models\Jugador;
 use Futbol\Models\Pais;
 use Futbol\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
+use Log;
 
 
 class BackendController extends Controller{

@@ -10,12 +10,28 @@ use Futbol\Models\Pais;
 use Futbol\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Log;
+use Illuminate\Support\Facades\Auth;
+use Session;
+use Redirect;
+use Futbol\User;
 
 
 class BackendController extends Controller{
 
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+
+
   public function dash(){
-    return view('layouts.backend_layout');
+    $userInfo = User::find(Auth::id())->first();
+    return view('layouts.backend_layout')->with('userInfo',$userInfo);
   }
 
   public function last_activity(){
@@ -35,4 +51,10 @@ class BackendController extends Controller{
     return view('layouts.backend.content',$content);
   }
 
+  public function logout(){
+      Auth::logout();
+      Session::flush();
+
+      return Redirect::to('/');
+  }
 }

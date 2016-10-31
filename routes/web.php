@@ -12,6 +12,7 @@
 */
 
 Route::group(['prefix' => 'backend'], function () {
+    Route::get('/logout', 'BackendController@logout');  
     Route::get('/','BackendController@dash');
     Route::get('/last_activity','BackendController@last_activity');
 
@@ -41,3 +42,7 @@ Route::group(['prefix' => 'backend'], function () {
     });
 
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

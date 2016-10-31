@@ -9,9 +9,9 @@
                 </div>
                 <div class="info">
                     <div class="title">
-                        <a target="_blank" href="http://scripteden.com/">{{ $equipo->nombre_equipo }}</a>
+                        <a target="_blank" href="http://scripteden.com/"></a>
                     </div>
-                    <div class="desc">{{ $equipo-> }}</div>
+                    <div class="desc"></div>
                 </div>
                 <div class="bottom">
                     <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">

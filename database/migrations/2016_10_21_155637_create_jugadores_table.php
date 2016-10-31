@@ -13,7 +13,7 @@ class CreateJugadoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('jugadores', function (Blueprint $table) {
+      /*  Schema::create('jugadores', function (Blueprint $table) {
             $table->increments('jugador_id');
             $table->json('jugador_nombres')->nulleable();
             $table->json('jugador_apellidos')->nulleable();
@@ -23,7 +23,7 @@ class CreateJugadoresTable extends Migration
             $table->timestamp('jugador_created')->useCurrent();
             $table->timestamp('jugador_modified')->nullable();
             $table->timestamp('jugador_deleted')->nullable();
-        });
+        });*/
     }
 
     /**
@@ -33,6 +33,6 @@ class CreateJugadoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jugadores');
+      //  Schema::dropIfExists('jugadores');
     }
 }

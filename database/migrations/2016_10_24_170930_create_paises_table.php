@@ -13,7 +13,7 @@ class CreatePaisesTable extends Migration
      */
     public function up()
     {
-        Schema::create('paises', function (Blueprint $table) {
+    /*    Schema::create('paises', function (Blueprint $table) {
             $table->increments('pais_id');
             $table->string('pais_nombre');
             $table->json('pais_images')->nullable();
@@ -22,7 +22,7 @@ class CreatePaisesTable extends Migration
             $table->timestamp('pais_created')->useCurrent();
             $table->timestamp('pais_modified')->nullable();
             $table->timestamp('pais_deleted')->nullable();
-        });
+        });*/
     }
 
     /**
@@ -32,6 +32,6 @@ class CreatePaisesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paises');
+    //    Schema::dropIfExists('paises');
     }
 }

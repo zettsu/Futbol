@@ -13,7 +13,7 @@ class CreateEquiposTable extends Migration
      */
     public function up()
     {
-        Schema::create('equipos', function (Blueprint $table) {
+  /*      Schema::create('equipos', function (Blueprint $table) {
             $table->increments('equipo_id');
             $table->string('equipo_nombre')->unique();
             $table->integer('equipo_pais_id')->nulleable();
@@ -23,7 +23,7 @@ class CreateEquiposTable extends Migration
             $table->timestamp('equipo_modified')->nullable();
             $table->timestamp('equipo_deleted')->nullable();
 
-        });
+        });*/
 
     }
 
@@ -34,6 +34,6 @@ class CreateEquiposTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipos');
+      //  Schema::dropIfExists('equipos');
     }
 }

@@ -11,9 +11,15 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
+        {{ $userInfo->name }}
+        @section('name', $userInfo->name)
+
         <li><a href="/backend/settings">Settings</a></li>
         <li><a href="/backend/profile">Profile</a></li>
         <li><a href="/backend/help">Ayuda</a></li>
+        @if (!Auth::guest())
+          <li><a href="/backend/logout">Salir</a></li>
+        @endif
       </ul>
     </div>
   </div>

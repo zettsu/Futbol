@@ -13,7 +13,7 @@ class CreatePartidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('partidos', function (Blueprint $table) {
+    /*    Schema::create('partidos', function (Blueprint $table) {
             $table->increments('partido_id');
             $table->integer('partido_equipo_id_local')->nulleable();
             $table->integer('partido_equipo_id_visitante')->nulleable();
@@ -27,7 +27,7 @@ class CreatePartidosTable extends Migration
             $table->timestamp('partido_deleted')->nullable();
 
 
-        });
+        });*/
     }
 
     /**
@@ -37,6 +37,6 @@ class CreatePartidosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('partidos');
+        //Schema::dropIfExists('partidos');
     }
 }

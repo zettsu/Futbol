@@ -11,6 +11,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
+        <img src="{{ $userInfo->img }}" class="img-circle">
         {{ $userInfo->name }}
         @section('name', $userInfo->name)
 

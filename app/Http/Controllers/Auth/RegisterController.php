@@ -3,6 +3,7 @@
 namespace Futbol\Http\Controllers\Auth;
 
 use Futbol\User;
+use Futbol\Models\Profile;
 use Validator;
 use Futbol\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -62,10 +63,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $user->profile()->save(new Profile);
+
+        return $user;
     }
 }

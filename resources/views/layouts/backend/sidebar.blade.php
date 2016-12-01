@@ -5,5 +5,6 @@
     <li><a href="#" onclick="partidoActions();">Partidos</a></li>
     <li><a href="#" onclick="statsActions();">Estadisticas</a></li>
     <li><a href="#" onclick="fixtureActions();">Fixture</a></li>
+    <li><a href="#" onclick="loadMessageSender();">Mensaje Nuevo</a></li>
   </ul>
 </div>

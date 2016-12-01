@@ -12,9 +12,11 @@
 */
 
 Route::group(['prefix' => 'backend'], function () {
-    Route::get('/logout', 'BackendController@logout');  
+    Route::get('/logout', 'BackendController@logout');
     Route::get('/','BackendController@dash');
-    Route::get('/last_activity','BackendController@last_activity');
+    Route::get('last_activity','BackendController@last_activity');
+    Route::get('loadmessagesender','BackendController@loadmessagesender');
+    Route::post('/new_message','BackendController@new_message');
 
     Route::group(['prefix'=>'equipo'],function(){
       Route::get('/show/{id}','Backend\EquipoController@show');

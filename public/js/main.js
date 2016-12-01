@@ -2,6 +2,7 @@ $(document).ready(function(){
   //last_activity();
   //$("#home").addClass("active");
   partidoVer(1);
+
 });
 
 
@@ -33,7 +34,19 @@ function partidoAdd(){
   });
 }
 
-
+function loadMessageSender(){
+  $.ajax({
+    url: '/backend/loadmessagesender',
+    type: 'get',
+    dataType: 'html'
+  })
+  .done(function(data) {
+    $('#content' ).html(data);
+  })
+  .fail(function(data) {
+    $('#content').html(data);
+  });
+}
 
 $(".nav li").on("click", function() {
     $(".nav li").removeClass("active");

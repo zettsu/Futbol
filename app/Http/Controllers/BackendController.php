@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use Redirect;
 use Futbol\User;
-
+use Mail;
+use Request;
 
 class BackendController extends Controller{
 
@@ -35,12 +36,14 @@ class BackendController extends Controller{
   }
 
   public function last_activity(){
-    $equipos = Equipo::with('pais_info')->get()->sortByDesc('equipo_created')->take(10);
-    $partidos = Partido::with('visitante','local','estadio')->get()->sortByDesc('partido_created')->take(10);
 
-    foreach ($partidos as $partido) {
-      $partido->estadio->pais = Pais::where('pais_id',$partido->estadio->estadio_pais_id)->first();
-    }
+    $equipos = Equipo::with('pais_info')->get()->sortByDesc('equipo_created')->take(10);
+    $partidos = Partido::with('visitante','local')->get()->sortByDesc('partido_created')->take(10);
+
+    // Revisar porque no anda
+    //foreach ($partidos as $partido) {
+      //$partido->estadio->pais = Pais::where('pais_id',$partido->estadio->estadio_pais_id)->first();
+    //}
 
     $content['content'] = array(
       'title' => 'Dash',
@@ -56,5 +59,26 @@ class BackendController extends Controller{
       Session::flush();
 
       return Redirect::to('/');
+  }
+
+  public function new_message(Request $request){
+    $data = [];
+
+    Mail::send('layouts.message', $data, function($message) use ($request)
+       {
+           //remitente
+           $message->from("jmatias.olivera@gmail.com","Matias");
+
+           //asunto
+           $message->subject("Prueba");
+
+           //receptor
+           $message->to("jmatias.olivera@gmail.com","Prueba ");
+
+       });
+  }
+
+  public function loadmessagesender(){
+    return view('layouts.backend.messages');
   }
 }

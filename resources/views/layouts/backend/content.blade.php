@@ -43,10 +43,10 @@
                   <td><a href="{!! url('/backend/equipo/'.$partido->partido_id)!!}">{!!  $partido->partido_id !!}</a></td>
                   <td>{!!  $partido->local->equipo_nombre !!}</td>
                   <td>{!!  $partido->visitante->equipo_nombre !!}</td>
-                  <td>{!!  $partido->estadio['estadio_nombre'] !!}</td>
+
                   <td>{!!  $partido->partido_inicio !!}</td>
                   <td>{!!  $partido->partido_fin !!}</td>
-                  <td>{!!  $partido->estadio->pais->pais_nombre !!}</td>
+
                   <td>{!!  $partido->partido_created !!}</td>
                 </tr>
               @endforeach

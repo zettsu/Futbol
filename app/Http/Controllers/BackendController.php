@@ -16,6 +16,9 @@ use Redirect;
 use Futbol\User;
 use Mail;
 use Request;
+use stdClass;
+
+use Illuminate\Support\Facades\Request as Request2;
 
 class BackendController extends Controller{
 
@@ -61,16 +64,23 @@ class BackendController extends Controller{
       return Redirect::to('/');
   }
 
-  public function new_message(Request $request){
+  public function new_message(){
     $data = [];
+    $datos = new stdClass;
+    $datos->asunto = Request2::input('titulo');
+    $datos->mensaje = Request2::input('mensaje');
 
-    Mail::send('layouts.message', $data, function($message) use ($request)
-       {
+    $data['body'] = $datos->mensaje;
+    $data['titulo_msj'] = "Envio de Prueba";
+    $data['from'] =  "jmatias.olivera@gmail.com";
+    $data['subject'] = $datos->asunto;
+
+    Mail::send('layouts.message', $data, function($message) use ($datos) {
            //remitente
            $message->from("jmatias.olivera@gmail.com","Matias");
 
            //asunto
-           $message->subject("Prueba");
+           $message->subject("subject a mano");
 
            //receptor
            $message->to("jmatias.olivera@gmail.com","Prueba ");

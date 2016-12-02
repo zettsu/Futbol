@@ -38,7 +38,8 @@ function loadMessageSender(){
   $.ajax({
     url: '/backend/loadmessagesender',
     type: 'get',
-    dataType: 'html'
+    dataType: 'html',
+    contentType: "application/json"
   })
   .done(function(data) {
     $('#content' ).html(data);

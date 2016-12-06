@@ -17,7 +17,6 @@ use Futbol\User;
 use Mail;
 use Request;
 use stdClass;
-use Futbol\Http\Controllers\Auth\Guardian;
 use Illuminate\Support\Facades\Request as Request2;
 use Illuminate\Http\Request as rawRequest;
 
@@ -32,24 +31,9 @@ class BackendController extends Controller{
   public function __construct(rawRequest $req)
   {
       $this->middleware('auth');
+      $this->middleware('guardian');
       $this->req = $req;
       $user = Auth::user();
-      //$guardian = new Guardian();
-      //$guardian->auditar($this->req);
-
-      $this->beforeFilter(function()
-        {
-            $this->auditar();
-        });
-  }
-
-  private function auditar(){
-    echo "ALL";
-    var_dump($this->req->all());
-      echo "user";
-    var_dump($this->req->user());
-      echo "path";
-    var_dump($this->req->path());
   }
 
   public function dash(){

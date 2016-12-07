@@ -13,7 +13,7 @@ class CreateUsersProfileTable extends Migration
      */
     public function up()
     {
-        Schema::create('profile', function (Blueprint $table) {
+    /*    Schema::create('profile', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('primer_nombre')->nullable();
@@ -25,7 +25,7 @@ class CreateUsersProfileTable extends Migration
             $table->string('image')->nullable();
             $table->json('extras')->nullable();
             $table->timestamps();
-        });
+        });*/
     }
 
     /**
@@ -35,6 +35,6 @@ class CreateUsersProfileTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profile');
+      //  Schema::dropIfExists('profile');
     }
 }

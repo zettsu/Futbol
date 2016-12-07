@@ -4,9 +4,12 @@ namespace Futbol\Http\Controllers\Auth;
 
 use Futbol\User;
 use Futbol\Models\Profile;
+use Futbol\Models\AsignedRoles;
+use Futbol\Models\Role;
 use Validator;
 use Futbol\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
 
 class RegisterController extends Controller
 {
@@ -28,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/backend';
 
     /**
      * Create a new controller instance.
@@ -37,7 +40,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
+        //$this->middleware('guest');
     }
 
     /**
@@ -69,7 +73,16 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-        $user->profile()->save(new Profile);
+
+        $asignedRole = new AsignedRoles;
+        $asignedRole->user_id = $user->id;
+        $asignedRole->role_id = $role_id;
+        $asignedRole->save();
+
+        $profile = new Profile;
+
+        $profile->user_id = $user->id ;
+        $profile->save();
 
         return $user;
     }

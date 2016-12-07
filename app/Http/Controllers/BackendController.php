@@ -19,6 +19,8 @@ use Request;
 use stdClass;
 use Illuminate\Support\Facades\Request as Request2;
 use Illuminate\Http\Request as rawRequest;
+use Futbol\Models\Role;
+use Validator;
 
 class BackendController extends Controller{
 
@@ -95,5 +97,34 @@ class BackendController extends Controller{
 
   public function loadmessagesender(){
     return view('layouts.backend.messages');
+  }
+
+
+
+  public function createRole(){
+    $role_name = Request2::input('role_name');
+    $role_description = Request2::input('role_description');
+    $actions_params = Request2::input('actions');
+
+    $validate =  Validator::make(Request2::all(), [
+        'role_name' => 'required|unique:roles,name'
+    ]);
+
+    if($validate->fails()){
+      echo "fallo";
+    }else{
+      $actions = new StdClass;
+      $actions->actions = $actions_params;
+
+      $role = new Role;
+      $role->name = $role_name;
+      $role->actions = json_encode($actions);
+      $role->description = $role_description;
+
+      $role->save();
+    }
+    
+    return $role;
+
   }
 }

@@ -31,4 +31,8 @@ class User extends Authenticatable
       return $this->HasOne('Futbol\Models\Profile','user_id');
     }
 
+    public function roles(){
+      return $this->HasOne('Futbol\Models\Role','user_id');
+    }
+
 }

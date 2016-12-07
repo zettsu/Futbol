@@ -13,12 +13,13 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+    /*    Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('user_id');
+            $table->text('description')->nullable();
+            $table->json('actions')->nullable();
             $table->timestamps();
-        });
+        });*/
     }
 
     /**
@@ -28,6 +29,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+    //    Schema::dropIfExists('roles');
     }
 }

@@ -13,7 +13,7 @@ class CreateEstadiosTable extends Migration
      */
     public function up()
     {
-        Schema::create('estadios', function (Blueprint $table) {
+    /*    Schema::create('estadios', function (Blueprint $table) {
             $table->increments('estadio_id');
             $table->string('estadio_nombre')->nullable();
             $table->json('estadio_historico_partidos')->nullable();
@@ -23,7 +23,7 @@ class CreateEstadiosTable extends Migration
             $table->timestamp('estadio_created')->useCurrent();
             $table->timestamp('estadio_modified')->nullable();
             $table->timestamp('estadio_deleted')->nullable();
-        });
+        });*/
     }
 
     /**
@@ -33,6 +33,6 @@ class CreateEstadiosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estadios');
+    //    Schema::dropIfExists('estadios');
     }
 }

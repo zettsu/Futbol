@@ -17,10 +17,11 @@ Route::group(['prefix' => 'backend'], function () {
     Route::get('last_activity','BackendController@last_activity');
     Route::get('loadmessagesender','BackendController@loadmessagesender');
     Route::post('/new_message','BackendController@new_message');
-    Route::get('/create_usersys', 'Auth\RoleCreatorController@view');
-    Route::get('/roles',function(){
-      return view('layouts.backend.roles');
-    });
+
+    Route::get('/user', 'UserController@view');
+    Route::post('/create_usersys', 'UserController@create');
+    
+    Route::get('/roles','RoleCreatorController@view');
     Route::post('/create_role','BackendController@createRole');
 
     Route::group(['prefix'=>'equipo'],function(){

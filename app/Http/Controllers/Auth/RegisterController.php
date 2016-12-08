@@ -40,8 +40,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        //$this->middleware('guest');
+        $this->middleware('guest');
     }
 
     /**
@@ -72,17 +71,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-
-
-        $asignedRole = new AsignedRoles;
-        $asignedRole->user_id = $user->id;
-        $asignedRole->role_id = $role_id;
-        $asignedRole->save();
-
-        $profile = new Profile;
-
-        $profile->user_id = $user->id ;
-        $profile->save();
 
         return $user;
     }

@@ -49,6 +49,23 @@ function loadMessageSender(){
   });
 }
 
+function loadUserCreator(){
+  $.ajax({
+    url: '/backend/user',
+    type: 'get',
+    dataType: 'html',
+    contentType: "application/json"
+  })
+  .done(function(data) {
+    $('#content' ).html(data);
+  })
+  .fail(function(data) {
+    $('#content').html(data);
+  });
+}
+
+
+
 $(".nav li").on("click", function() {
     $(".nav li").removeClass("active");
     $(this).addClass("active");

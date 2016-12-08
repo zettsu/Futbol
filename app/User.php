@@ -28,11 +28,13 @@ class User extends Authenticatable
     ];
 
     public function profile(){
-      return $this->HasOne('Futbol\Models\Profile','user_id');
+      return $this->hasOne('Futbol\Models\Profile','user_id');
     }
 
     public function roles(){
-      return $this->HasOne('Futbol\Models\Role','user_id');
+      return $this->hasOne('Futbol\Models\AsignedRoles','user_id');
     }
+
+    
 
 }

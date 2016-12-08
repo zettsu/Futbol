@@ -6,5 +6,8 @@
     <li><a href="#" onclick="statsActions();">Estadisticas</a></li>
     <li><a href="#" onclick="fixtureActions();">Fixture</a></li>
     <li><a href="#" onclick="loadMessageSender();">Mensaje Nuevo</a></li>
+    @if ($userInfo->is_admin)
+      <li><a href="#" onclick="loadUserCreator();">Crear Usuario</a></li>
+    @endif
   </ul>
 </div>

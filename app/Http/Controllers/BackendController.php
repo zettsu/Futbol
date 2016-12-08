@@ -25,25 +25,39 @@ use Validator;
 class BackendController extends Controller{
 
   protected $req;
-  /**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
-  public function __construct(rawRequest $req)
-  {
+
+
+  public function __construct(rawRequest $req) {
       $this->middleware('auth');
       $this->middleware('guardian');
       $this->req = $req;
       $user = Auth::user();
   }
 
-  public function dash(){
+
+  private function is_admin(){
+    $user_id = Auth::user()->id;
+    $role_id = User::find($user_id)->roles->role_id;
+    $role = Role::find($role_id);
+
+    $is_admin = false;
+
+    if($role->name == "admin"){
+      $is_admin = true;
+    }
+
+    return $is_admin;
+  }
+
+
+  public function dash() {
     $userInfo = User::find(Auth::id())->first();
+    $userInfo['is_admin'] = $this->is_admin();
     return view('layouts.backend_layout')->with('userInfo',$userInfo);
   }
 
-  public function last_activity(){
+
+  public function last_activity() {
 
     $equipos = Equipo::with('pais_info')->get()->sortByDesc('equipo_created')->take(10);
     $partidos = Partido::with('visitante','local')->get()->sortByDesc('partido_created')->take(10);
@@ -62,15 +76,18 @@ class BackendController extends Controller{
     return view('layouts.backend.content',$content);
   }
 
-  public function logout(){
+
+  public function logout() {
       Auth::logout();
       Session::flush();
 
       return Redirect::to('/');
   }
 
-  public function new_message(){
+
+  public function new_message() {
     $data = [];
+
     $datos = new stdClass;
     $datos->asunto = Request2::input('titulo');
     $datos->mensaje = Request2::input('mensaje');
@@ -81,50 +98,17 @@ class BackendController extends Controller{
     $data['subject'] = $datos->asunto;
 
     Mail::send('layouts.message', $data, function($message) use ($datos) {
-           //remitente
-           $message->from("jmatias.olivera@gmail.com","Matias");
+     $message->from("jmatias.olivera@gmail.com","Matias");
+     $message->subject("subject a mano");
+     $message->to("jmatias.olivera@gmail.com","Prueba ");
+    });
 
-           //asunto
-           $message->subject("subject a mano");
-
-           //receptor
-           $message->to("jmatias.olivera@gmail.com","Prueba ");
-
-       });
   }
 
 
-
-  public function loadmessagesender(){
+  public function loadmessagesender() {
     return view('layouts.backend.messages');
   }
 
 
-
-  public function createRole(){
-    $role_name = Request2::input('role_name');
-    $role_description = Request2::input('role_description');
-    $actions_params = Request2::input('actions');
-
-    $validate =  Validator::make(Request2::all(), [
-        'role_name' => 'required|unique:roles,name'
-    ]);
-
-    if($validate->fails()){
-      echo "fallo";
-    }else{
-      $actions = new StdClass;
-      $actions->actions = $actions_params;
-
-      $role = new Role;
-      $role->name = $role_name;
-      $role->actions = json_encode($actions);
-      $role->description = $role_description;
-
-      $role->save();
-    }
-    
-    return $role;
-
-  }
 }

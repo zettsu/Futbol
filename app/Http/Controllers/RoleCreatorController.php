@@ -11,43 +11,64 @@ use Futbol\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 
-class RoleCreatorController extends Controller
-{
+class RoleCreatorController extends Controller {
 
-    public function __construct()
-    {
+
+    public function __construct() {
         $this->middleware('auth');
     }
 
-    public function view()
-    {
+
+    public function view() {
       return view('layouts.backend.roles');
     }
 
-    public function createRole(){
-      $role_name = Request2::input('role_name');
-      $role_description = Request2::input('role_description');
-      $actions_params = Request2::input('actions');
 
-      $validate =  Validator::make(Request2::all(), [
-          'role_name' => 'required|unique:roles,name'
-      ]);
+    private function is_admin() {
+      
+      $user_id = Auth::user()->id;
+      $role_id = User::find($user_id)->roles->role_id;
+      $role = Role::find($role_id);
 
-      if($validate->fails()){
-        echo "fallo";
-      }else{
-        $actions = new StdClass;
-        $actions->actions = $actions_params;
+      $is_admin = false;
 
-        $role = new Role;
-        $role->name = $role_name;
-        $role->actions = json_encode($actions);
-        $role->description = $role_description;
-
-        $role->save();
+      if($role->name == "admin") {
+        $is_admin = true;
       }
 
-      return $role;
+      return $is_admin;
+    }
 
+
+    public function createRole() {
+
+      $role_name        = Request2::input('role_name');
+      $role_description = Request2::input('role_description');
+      $actions_params   = Request2::input('actions');
+
+      $validate =  Validator::make(Request2::all(), [
+          'role_name' => 'required|unique:roles, name',
+          'actions' => 'required'
+      ]);
+
+      if($this->is_admin()) {
+        if(!$validate->fails()) {
+          $actions = new StdClass;
+          $actions->actions = $actions_params;
+
+          $role = new Role;
+          $role->name = $role_name;
+          $role->actions = json_encode($actions);
+          $role->description = $role_description;
+          $role->save();
+
+          return response()->json(['code' => 0, 'info' => 'Success.'], 200);
+        }else{
+          $error = $validate->errors()->all();
+          return response()->json(['code' => 13, 'info' => 'Error Validación.', 'error' => $error], 400);
+        }
+      }else{
+        return response()->json(['code' => 401,'info'=>'Not allowed.'], 401);
+      }
     }
 }

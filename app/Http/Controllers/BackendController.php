@@ -51,6 +51,7 @@ class BackendController extends Controller{
 
 
   public function dash() {
+    $this->authorize('dash');
     $userInfo = User::find(Auth::id())->first();
     $userInfo['is_admin'] = $this->is_admin();
     return view('layouts.backend_layout')->with('userInfo',$userInfo);

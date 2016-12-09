@@ -20,12 +20,13 @@ class RoleCreatorController extends Controller {
 
 
     public function view() {
+      $this->authorize('createRole');
       return view('layouts.backend.roles');
     }
 
 
     private function is_admin() {
-      
+
       $user_id = Auth::user()->id;
       $role_id = User::find($user_id)->roles->role_id;
       $role = Role::find($role_id);

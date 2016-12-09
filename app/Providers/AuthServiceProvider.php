@@ -2,8 +2,10 @@
 
 namespace Futbol\Providers;
 
+use Futbol\Policies\ModelPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'Futbol\Model' => 'Futbol\Policies\ModelPolicy',
+        User::class => ModelPolicy::class,
     ];
 
     /**
@@ -25,6 +27,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // Custom policies
+        Gate::define('dash', 'Futbol\Policies\ModelPolicy@dash');
+        Gate::define('createrole', 'Futbol\Policies\ModelPolicy@createRole');
+        Gate::define('usercreate', 'Futbol\Policies\ModelPolicy@createUser');
+
     }
 }
